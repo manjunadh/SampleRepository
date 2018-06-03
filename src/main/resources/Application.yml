@@ -1,0 +1,39 @@
+server:
+  port: 9999
+  
+spring:
+  #profiles: local
+  # Primary database for ticketing and signage tables
+    # Hits a MariaDB instance running locally in Docker - this Docker image must be set up and run first by the developer
+    # ie. docker pull mariadb:10.1.13
+    #     docker run -d --name mariadb -h mariadb  -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=fpos_services mariadb:10.1.13 --lower-case-table-names=1
+    # In case you are on windows7 and are unable to connect to docker look here - https://www.iancollington.com/docker-and-cisco-anyconnect-vpn/
+  datasource:
+    jdbc-url: jdbc:mariadb://localhost/fpos_services
+    username: root
+    password : password
+    driver-class-name: org.mariadb.jdbc.Driver
+
+    #connection pooling stuff
+    testOnBorrow: true
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    logValidationErrors: true
+    removeAbandoned: true
+    removeAbandonedTimeout: 200
+    logAbandoned: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+    generate-ddl: false
+
+logging:
+  level:
+    com.fglsports.inventorylocator: DEBUG
+    org.hibernate.SQL: DEBUG
+    liquibase: INFO
+    org.springframework.jdbc: DEBUG
