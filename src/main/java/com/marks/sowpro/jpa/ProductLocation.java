@@ -28,7 +28,7 @@ public class ProductLocation {
     private Integer locationId;
     
     @Column(name = "LOCATION_PATH",columnDefinition="BIGINT NOT NULL")
-    private Integer locationPath;
+    private String locationPath;
     
     @Column(name = "LAST_MOVED_ON",columnDefinition="DATETIME NOT NULL")
     private Timestamp lastMovedOn;
@@ -68,11 +68,11 @@ public class ProductLocation {
         this.locationId = locationId;
     }
 
-    public Integer getLocationPath() {
+    public String getLocationPath() {
         return locationPath;
     }
 
-    public void setLocationPath(Integer locationPath) {
+    public void setLocationPath(String locationPath) {
         this.locationPath = locationPath;
     }
 
